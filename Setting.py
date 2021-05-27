@@ -21,7 +21,7 @@ LINEDETECT_RIGHT = 21
 # Light sensor pin config
 LIGHTPIN = 4  # pin light sensor
 LEDPIN = 26  # pin led
-LIGHT_ON = 10000
+LIGHT_ON = 5000
 # ultra sonic sensor
 # set GPIO Pins
 GPIO_TRIGGER = 5
@@ -53,6 +53,14 @@ MOTOR_SENSITY = 1.3
 MOTOR_MAXSPEED = 0.3
 # SignModule
 SIGNDISTANCE = 105
+SIGN_STOP = 14
+SIGN_30 = 1
+SIGN_70 = 4
+SIGN_LEFT = 39
+SIGN_RIGHT = 38
+SPEEDUP = 0.3
+SPEEDDOWN = 0.2
+SPEEDTURN = 0.2
 LISTSIGN = [1, 4, 14, 38, 39]
 classNames = ['Speed limit (20km/h)',
               'Speed limit (30km/h)',

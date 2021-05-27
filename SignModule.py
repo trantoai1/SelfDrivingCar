@@ -38,7 +38,7 @@ class ThreadImage(Thread):
                     self.sign = sign_type
                 else:
                     self.sign = -1
-            time.sleep(0.1)  # let it breathe
+            time.sleep(0.001)  # let it breathe
         print('Sign Module stopped!')
 
     def join(self):
