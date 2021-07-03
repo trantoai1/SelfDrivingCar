@@ -1,24 +1,15 @@
-import RPi.GPIO as GPIO
+
 from time import sleep
-import Setting
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+from Setting import MOTOR_EnaA,MOTOR_EnaB, GPIO
+
 
 
 class Motor():
-    def __init__(self, EnaA=Setting.MOTOR_EnaA, In1A=Setting.MOTOR_In1A, In2A=Setting.MOTOR_In2A, EnaB=Setting.MOTOR_EnaB, In1B=Setting.MOTOR_In1B, In2B=Setting.MOTOR_In2B):
+    def __init__(self, EnaA=MOTOR_EnaA, EnaB=MOTOR_EnaB):
         self.EnaA = EnaA
-        self.In1A = In1A
-        self.In2A = In2A
         self.EnaB = EnaB
-        self.In1B = In1B
-        self.In2B = In2B
         GPIO.setup(self.EnaA, GPIO.OUT)
-        GPIO.setup(self.In1A, GPIO.OUT)
-        GPIO.setup(self.In2A, GPIO.OUT)
         GPIO.setup(self.EnaB, GPIO.OUT)
-        GPIO.setup(self.In1B, GPIO.OUT)
-        GPIO.setup(self.In2B, GPIO.OUT)
         self.pwmA = GPIO.PWM(self.EnaA, 100);
         self.pwmA.start(0);
         self.pwmB = GPIO.PWM(self.EnaB, 100);
@@ -43,25 +34,8 @@ class Motor():
         self.pwmA.ChangeDutyCycle(abs(leftSpeed))
         self.pwmB.ChangeDutyCycle(abs(rightSpeed))
 
-        if leftSpeed > 0:
-            GPIO.output(self.In1A, GPIO.HIGH)
-            GPIO.output(self.In2A, GPIO.LOW)
-        else:
-            GPIO.output(self.In1A, GPIO.LOW)
-            GPIO.output(self.In2A, GPIO.HIGH)
-
-        if rightSpeed > 0:
-            GPIO.output(self.In1B, GPIO.HIGH)
-            GPIO.output(self.In2B, GPIO.LOW)
-        else:
-            GPIO.output(self.In1B, GPIO.LOW)
-            GPIO.output(self.In2B, GPIO.HIGH)
-        # if abs(leftSpeed-rightSpeed) > 30:
-        #     sleep(0.5)
         sleep(t)
-            #self.pwmA.ChangeDutyCycle(0);
-            #self.pwmB.ChangeDutyCycle(0);
-        #print('....')
+
 
     def stop(self, t=0):
         self.pwmA.ChangeDutyCycle(0);

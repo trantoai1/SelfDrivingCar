@@ -12,7 +12,7 @@ class LightSensor(Thread):
         super(LightSensor, self).__init__()
 
     def run(self):
-        print('Light Module starting...')
+        print('Light Module is starting...')
         while self.RUN:
             with self.lock:
                 value = self.rc_time()
@@ -24,7 +24,7 @@ class LightSensor(Thread):
                     self.led.off()
 
             time.sleep(0.5)  # let it breathe
-        print('Light Module stopped!')
+        print('Light Module was stopped!')
 
 
     def rc_time(self):
@@ -45,7 +45,7 @@ class LightSensor(Thread):
         return count
 
     def stop(self):
-        print('Light Module stopping...')
+        print('Light Module is stopping...')
         self.RUN = False
 #define the pin that goes to the circuit
 

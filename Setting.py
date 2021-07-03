@@ -6,17 +6,17 @@ GPIO.setwarnings(False)
 
 DEBUG = True
 # Motor pin config
-MOTOR_EnaA = 17
+MOTOR_EnaA = 18 #17
 
-MOTOR_In1A = 22
-MOTOR_In2A = 27
+# MOTOR_In1A = 22
+# MOTOR_In2A = 27
 
 MOTOR_EnaB = 23
-MOTOR_In1B = 15
-MOTOR_In2B = 18
+# MOTOR_In1B = 15
+# MOTOR_In2B = 18
 
-LINEDETECT_LEFT = 20
-LINEDETECT_RIGHT = 21
+#LINEDETECT_LEFT = 20
+#LINEDETECT_RIGHT = 21
 
 # Light sensor pin config
 LIGHTPIN = 4  # pin light sensor
@@ -24,7 +24,7 @@ LEDPIN = 26  # pin led
 LIGHT_ON = 5000
 # ultra sonic sensor
 # set GPIO Pins
-GPIO_TRIGGER = 5
+#GPIO_TRIGGER = 5
 GPIO_ECHO = 6
 
 # camera config
@@ -58,8 +58,8 @@ SIGN_30 = 1
 SIGN_70 = 4
 SIGN_LEFT = 39
 SIGN_RIGHT = 38
-SPEEDUP = 0.3
-SPEEDDOWN = 0.2
+SPEEDUP = 0.7
+SPEEDDOWN = 0.5
 SPEEDTURN = 0.2
 LISTSIGN = [1, 4, 14, 38, 39]
 classNames = ['Speed limit (20km/h)',

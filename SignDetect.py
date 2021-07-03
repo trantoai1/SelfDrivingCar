@@ -344,7 +344,7 @@ def main(args):
     # file.write("\n{} {} {} {} {} {}".format(pos[0], pos[1], pos[2], pos[3], pos[4], pos[5]))
     # print("Finish {} frames".format(count))
     # file.close()
-    return sign_type
+    return 
 
 
 if __name__ == '__main__':  # để chạy trong python console

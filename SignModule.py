@@ -2,16 +2,16 @@ import time
 from threading import Thread, RLock
 from SignDetect import SignDetect
 from Setting import SIGNDISTANCE, LISTSIGN
-
+import WebcamModule as wM
 
 class ThreadImage(Thread):
-    def __init__(self, img=None):
+    def __init__(self):
         self.signDetect = SignDetect()
-        self.img = img
+        self.img = wM.getImg(size=[480, 360])
         self.RUN = True
         self.exec = False
         self.sign = -1
-        self.processImg = None
+        self.processImg = self.img
         self.lock = RLock()
         super(ThreadImage, self).__init__()
 
@@ -20,9 +20,10 @@ class ThreadImage(Thread):
             self.img = img
 
     def run(self):
-        print('Sign Module starting...')
+        print('Sign Module is starting...')
         while self.RUN:
             with self.lock:
+                self.img = wM.getImg(size=[480, 360])
                 coordinate, self.processImg, sign_type, text = self.signDetect.localization(self.img)
                 if coordinate is not None:
                     top = int(coordinate[0][1] * 1.05)
@@ -39,11 +40,11 @@ class ThreadImage(Thread):
                 else:
                     self.sign = -1
             time.sleep(0.001)  # let it breathe
-        print('Sign Module stopped!')
+        print('Sign Module was stopped!')
 
     def join(self):
         return self.processImg, self.sign, self.exec
 
     def stop(self):
-        print('Sign Module stopping...')
+        print('Sign Module is stopping...')
         self.RUN = False
