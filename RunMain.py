@@ -3,7 +3,7 @@ import cv2
 import MotorModule as mM
 #from DistanceModule import ThreadSonic
 from LightModule import LightSensor
-#from SignModule import ThreadImage
+from SignModule import ThreadImage
 #from SignDetect import SignDetect
 
 from Setting import classNames, SPEEDTURN, \
@@ -25,8 +25,8 @@ if __name__ == '__main__':
     #sonic.start()
     light.start()
 
-    #signdetect = ThreadImage()
-    #signdetect.start()
+    signdetect = ThreadImage()
+    signdetect.start()
     #signObj = SignDetect()
 
 
@@ -41,22 +41,23 @@ if __name__ == '__main__':
                 speed = 1
                 motor.move(speed,t= 3)
                 speed = SPEEDDOWN
-            #image, sign, signFlag = signdetect.join()
+            image, sign, signFlag = signdetect.join()
             #coordinate, original_image, sign, text = signObj.localization(img)
-            #if sign != -1 :#and sign != currentSign:
-                #currentSign = sign
-                #print('Sign={}, name={}, flag={}'.format(sign, classNames[sign], signFlag))
+            if sign != -1 :#and sign != currentSign:
+                # currentSign = sipython3gn
+                print('Sign={}, name={}, flag={}'.format(sign, classNames[sign], signFlag))
+            cv2.imshow('sl', image)
+            cv2.waitKey(1)
             #if sign == SIGN_30 and signFlag:
                # speed = SPEEDDOWN
             # elif sign == SIGN_70 and signFlag:
             #     speed = SPEEDUP
-            #elif sign == SIGN_STOP:
+            if sign == SIGN_STOP:
              #   pass
-                #speed = 0
+                speed = 0
 
 
-            #cv2.imshow('sl', image)
-            #cv2.waitKey(1)
+
             motor.move(speed, 0)
 
             #sleep(0.0001)
@@ -64,4 +65,4 @@ if __name__ == '__main__':
         print('Stop by KeyboardInterrupt')
         #sonic.stop()
         light.stop()
-        #signdetect.stop()
+        signdetect.stop()
